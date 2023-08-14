@@ -72,6 +72,11 @@ class Up(nn.Module):
 
 class SelfAttention(nn.Module):
     def __init__(self, channels, size):
+        """
+        Args:
+            channels int: channel dimension
+            size int: Image resolution
+        """
         super().__init__()
         self.channels = channels
         self.size = size
@@ -98,11 +103,11 @@ class SelfAttention(nn.Module):
 class UNet(nn.Module):
     def __init__(self, c_in=3, c_out=3, time_dim=256, device="cuda") -> None:
         super().__init__()
-        self.device = self.device
+        self.device = device
         self.time_dim = time_dim
         self.inc = DoubleConv(c_in, 64)
         self.down1 = Down(64, 128)
-        self.sa1 = SelfAttention(128, 32) # Channel Dimension, Image resolution
+        self.sa1 = SelfAttention(128, 32)
         self.down2 = Down(128, 256)
         self.sa2 = SelfAttention(256, 16)
         self.down3 = Down(256, 256)
