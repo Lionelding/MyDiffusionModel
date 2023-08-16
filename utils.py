@@ -5,7 +5,7 @@ from PIL import Image
 from matplotlib import pyplot as plt
 from torch.utils.data import DataLoader
 
-def plot_image(images):
+def plot_images(images):
     plt.figure(figsize=(32, 32))
     plt.imshow(torch.cat([
         torch.cat([i for i in images.cpu()], dim=-1),
@@ -33,5 +33,5 @@ def get_data(args):
 def setup_logging(run_name):
     os.makedirs("modules", exist_ok=True)
     os.makedirs("results", exist_ok=True)
-    os.makedirs(os.path.join("model", run_name), exist_ok=True)
+    os.makedirs(os.path.join("models", run_name), exist_ok=True)
     os.makedirs(os.path.join("results", run_name), exist_ok=True)
